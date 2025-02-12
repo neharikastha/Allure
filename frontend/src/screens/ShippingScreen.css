@@ -1,0 +1,66 @@
+/* ShippingScreen.css */
+.shipping-screen-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.shipping-screen-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.shipping-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.shipping-form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.shipping-form-control {
+    padding: 0.75rem;
+    font-size: 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.shipping-form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.shipping-form-submit-button {
+    width: 40%;
+    margin-left: 170px;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background-color: #5a0118;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.shipping-form-submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .shipping-screen-container {
+        padding: 1rem;
+    }
+
+    .shipping-form-submit-button {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,69 @@
+/* PaymentScreen.css */
+.payment-screen-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.payment-screen-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 30px;
+    color: #333;
+}
+
+.payment-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.payment-form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    margin-top: 60px;
+}
+
+.payment-radio-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.payment-radio-input {
+    margin-right: 10px;
+}
+
+.payment-submit-button {
+    width: 50%;
+    margin-left: 130px;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background-color: #5a0108;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.payment-submit-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.payment-alert {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .payment-screen-container {
+        padding: 1rem;
+    }
+
+    .payment-submit-button {
+        font-size: 1rem;
+    }
+}

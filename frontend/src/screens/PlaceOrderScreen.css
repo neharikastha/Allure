@@ -1,0 +1,113 @@
+/* PlaceOrderScreen.css */
+.place-order-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.place-order-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.place-order-shipping,
+.place-order-payment,
+.place-order-items {
+    margin-bottom: 1.5rem;
+}
+
+.place-order-shipping p,
+.place-order-payment p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.place-order-item-list {
+    margin-top: 1rem;
+}
+
+.place-order-item {
+    padding: 1rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.place-order-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.place-order-item-name {
+    font-size: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.place-order-item-price {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.place-order-summary-card {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.place-order-summary-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.place-order-summary-row {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.place-order-summary-row span {
+    font-weight: bold;
+}
+
+.place-order-total {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.place-order-error-message {
+    margin-bottom: 1rem;
+}
+
+.place-order-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    background-color: #520202;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.place-order-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .place-order-container {
+        padding: 1rem;
+    }
+
+    .place-order-summary-card {
+        padding: 1rem;
+    }
+
+    .place-order-button {
+        font-size: 1rem;
+    }
+}

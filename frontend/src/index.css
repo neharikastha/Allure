@@ -2,9 +2,13 @@ main{
   min-height: 80vh;
 }
 
-h3{
-  padding:1rem 0;
+
+/* Footer Links */
+footer {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  color: #494646;
 }
-.rating span{
-  margin:0.1rem;
-}
+
+

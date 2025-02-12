@@ -1,0 +1,93 @@
+/* ProductScreen.css */
+
+.product-container {
+  padding: 30px;
+}
+
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.product-image {
+  width: 45%;
+}
+
+.product-info {
+  width: 50%;
+}
+
+.card-prod {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card-prod:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-prod .card-title {
+  font-size: 1.75rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.card-prod .card-text {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.box {
+  margin-top: 20px;
+}
+
+.btn-block{
+  background-color: rgb(92, 7, 7);
+}
+
+.reviews-section {
+  margin-top: 30px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-section h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.review-form {
+  margin-top: 20px;
+}
+
+.review-form .form-group label {
+  font-weight: bold;
+}
+
+.review-form .form-control {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.review-form button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #0056b3;
+}
+
+.review-form .message {
+  margin-top: 20px;
+}

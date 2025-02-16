@@ -1,8 +1,12 @@
 /* CartScreen.css */
 .cart-container {
-  margin-top: 20px;
+  background-image: url('../assets/images/cart2.jpg');
+  background-size: contain;
+  background-position: 50px, 50px;
+  min-height: 90vh;
   padding: 20px;
 }
+
 
 .cart-header {
   display: flex;
@@ -48,6 +52,7 @@
 
 .cart-summary {
   margin-top: 30px;
+  margin-left: 80px;
 }
 
 .cart-summary h2 {

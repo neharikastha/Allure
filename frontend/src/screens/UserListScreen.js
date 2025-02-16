@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listUsers, deleteUser } from '../actions/userActions'
@@ -72,11 +70,11 @@ function UserListScreen({ }) {
                                             )}</td>
 
                                         <td>
-                                            <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                                            <Link to={`/admin/user/${user._id}/edit`}>
                                                 <Button variant='light' className='btn-sm'>
                                                     <i className='fas fa-edit'></i>
                                                 </Button>
-                                            </LinkContainer>
+                                            </Link>
 
                                             <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(user._id)}>
                                                 <i className='fas fa-trash'></i>

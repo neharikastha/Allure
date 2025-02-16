@@ -1,39 +1,50 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { Carousel, Image } from 'react-bootstrap'
-import Loader from './Loader'
-import Message from './Message'
-import { listTopProducts } from '../actions/productAction'
+import './ProductCarousel.css'  // Import custom CSS file
+
+// Import images from the assets/images folder
+import productImage1 from '../assets/images/c1.png'
+import productImage2 from '../assets/images/c2.png'
+import productImage3 from '../assets/images/c3.jpg'
 
 function ProductCarousel() {
-    
-    const dispatch = useDispatch()
+    return (
+        <Carousel pause='hover' className='bg-light product-carousel'>
+            <Carousel.Item>
+                <Image 
+                    src={productImage1} 
+                    alt="Product 1" 
+                    fluid 
+                    className="carousel-image" 
+                />
+                <Carousel.Caption className='carousel-caption'>
+                </Carousel.Caption>
+            </Carousel.Item>
 
-    const productTopRated = useSelector(state => state.productTopRated)
-    const { error, loading, products = [] } = productTopRated || {}  // Default to an empty array
+            <Carousel.Item>
+                <Image 
+                    src={productImage2} 
+                    alt="Product 2" 
+                    fluid 
+                    className="carousel-image" 
+                />
+                <Carousel.Caption className='carousel-caption'>
+                    {/* <h5 className='carousel-title'>Product 2</h5> */}
+                </Carousel.Caption>
+            </Carousel.Item>
 
-    useEffect(() => {
-        dispatch(listTopProducts())
-    }, [dispatch])
-
-    return (loading ? <Loader />
-        : error
-            ? <Message variant='danger'>{error}</Message>
-            : (
-                <Carousel pause='hover' className='bg-dark'>
-                    {products.map(product => (
-                        <Carousel.Item key={product._id}>
-                            <Link to={`/products/${product._id}`}>
-                                <Image src={product.image} alt={product.name} fluid />
-                                <Carousel.Caption className='carousel.caption'>
-                                    <h4>{product.name} (${product.price})</h4>
-                                </Carousel.Caption>
-                            </Link>
-                        </Carousel.Item>
-                    ))}
-                </Carousel>
-            )
+            <Carousel.Item>
+                <Image 
+                    src={productImage3} 
+                    alt="Product 3" 
+                    fluid 
+                    className="carousel-image" 
+                />
+                <Carousel.Caption className='carousel-caption'>
+                    {/* <h5 className='carousel-title'>Product 3</h5> */}
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel>
     )
 }
 

@@ -1,8 +1,9 @@
 /* Product.css */
 .product-card {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    height: 10%;
+    width: 100%
   }
   
   .card-img-container {

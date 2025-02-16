@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import { getOrderDetails, deliverOrder } from '../actions/orderActions';
 import { ORDER_DELIVER_RESET } from '../constants/orderConstants';
-import './OrderScreen.css'; // Import the custom CSS file
+import './OrderScreen.css'; 
 import Header from '../components/Header';
 
 function OrderScreen() {
@@ -98,14 +98,14 @@ function OrderScreen() {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items:</Col>
-                                    <Col>Rs {order?.itemPrice}</Col>
-                                </Row>
+                                    <Col>Rs {order?.orderItems?.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}</Col>
+                                    </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping:</Col>
-                                    <Col>Rs {order?.shippingPrice}</Col>
-                                </Row>
+                                    <Col>Rs {order?.orderItems?.reduce((acc, item) => acc + item.qty * item.price, 0) < 5000 ? 100 : order?.shippingPrice}</Col>
+                                    </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>

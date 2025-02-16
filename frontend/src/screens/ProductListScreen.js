@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom' // Use Link instead of LinkContainer
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import { listProducts, deleteProduct, createProduct } from '../actions/productAction'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
-function ProductListScreen({  }) {
+function ProductListScreen() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -23,7 +22,6 @@ function ProductListScreen({  }) {
 
     const productCreate = useSelector(state => state.productCreate)
     const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate
-
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -44,9 +42,7 @@ function ProductListScreen({  }) {
 
     }, [dispatch, userInfo, successDelete, successCreate, createdProduct, keyword])
 
-
     const deleteHandler = (id) => {
-
         if (window.confirm('Are you sure you want to delete this product?')) {
             dispatch(deleteProduct(id))
         }
@@ -73,7 +69,6 @@ function ProductListScreen({  }) {
             {loadingDelete && <Loader />}
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
-
             {loadingCreate && <Loader />}
             {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 
@@ -96,32 +91,30 @@ function ProductListScreen({  }) {
                                 </thead>
 
                                 <tbody>
-                                console.log('Products:', products); // Debugging step
-
-{Array.isArray(products) ? (
-    products.map(product => (
-        <tr key={product._id}>
-            <td>{product._id}</td>
-            <td>{product.name}</td>
-            <td>${product.price}</td>
-            <td>{product.category}</td>
-            <td>{product.brand}</td>
-            <td>
-                <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button variant='light' className='btn-sm'>
-                        <i className='fas fa-edit'></i>
-                    </Button>
-                </LinkContainer>
-                <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
-                    <i className='fas fa-trash'></i>
-                </Button>
-            </td>
-        </tr>
-    ))
-) : (
-    <Message>No products found</Message>
-)}
-
+                                    {Array.isArray(products) ? (
+                                        products.map(product => (
+                                            <tr key={product._id}>
+                                                <td>{product._id}</td>
+                                                <td>{product.name}</td>
+                                                <td>${product.price}</td>
+                                                <td>{product.category}</td>
+                                                <td>{product.brand}</td>
+                                                <td>
+                                                    {/* Replaced LinkContainer with Link */}
+                                                    <Link to={`/admin/product/${product._id}/edit`}>
+                                                        <Button variant='light' className='btn-sm'>
+                                                            <i className='fas fa-edit'></i>
+                                                        </Button>
+                                                    </Link>
+                                                    <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
+                                                        <i className='fas fa-trash'></i>
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <Message>No products found</Message>
+                                    )}
                                 </tbody>
                             </Table>
                             <Paginate pages={pages} page={page} isAdmin={true} />

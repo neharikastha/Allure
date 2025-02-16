@@ -53,7 +53,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_reviews(self, obj):
-        reviews = obj.review_set.all()
+        reviews = obj.review_set.all()[:5]
         serializer = ReviewSerializer(reviews, many=True)
         return serializer.data
 
@@ -73,7 +73,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     orderItems = serializers.SerializerMethodField(read_only=True)
     shippingAddress = serializers.SerializerMethodField(read_only=True)
-    user = serializers.SerializerMethodField(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Order
@@ -88,8 +88,8 @@ class OrderSerializer(serializers.ModelSerializer):
         try:
             address = ShippingAddressSerializer(
                 obj.shippingaddress, many=False).data
-        except:
-            address = False
+        except ShippingAddress.DoesNotExist:
+            address = None
         return address
 
     def get_user(self, obj):

@@ -1,0 +1,56 @@
+/* ProductCarousel.css */
+
+/* Ensure the carousel takes the full width */
+.product-carousel {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 70px;
+    margin: 0;
+}
+
+/* Make carousel items full width */
+.carousel-item {
+    width: 50%;
+    margin-left: 40px;
+}
+
+/* Make images fill the entire carousel item while maintaining aspect ratio */
+.carousel-image {
+    width: 150%;
+    height: 50%;
+    margin-left: 330px;
+    object-fit: fill;  /* Ensures image covers the container fully */
+    border-radius: 0; /* Remove border-radius for full-width look */
+}
+
+/* Styling the carousel caption */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.carousel-title {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #ffbb33;
+}
+
+/* Adjusting the carousel controls to match the new design */
+.carousel-control-prev, .carousel-control-next {
+    filter: invert(1);
+}
+
+/* Highlight active carousel indicators */
+.carousel-indicators li {
+    background-color: #ffbb33;
+}
+
+.carousel-indicators .active {
+    background-color: #f8e825;
+}

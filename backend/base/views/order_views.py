@@ -20,16 +20,24 @@ def addOrderItems(request):
     if not orderItems:
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # (1) Create order
+    # (1) Calculate total price of items
+    # total_item_price = sum(item['qty'] * item['price'] for item in orderItems)
+
+    # (2) Apply shipping price logic
+    # shipping_price = 100 if total_item_price < 5000 else data.get('shippingPrice', 0)
+
+    # (3) Create order
     order = Order.objects.create(
         user=user,
         paymentMethod=data.get('paymentMethod', ''),
         taxPrice=data.get('taxPrice', 0),
-        shippingPrice=data.get('shippingPrice', 0),
+        shippingPrice=data.get('shipping_price',0),
         totalPrice=data.get('totalPrice', 0)
     )
+    print(f"Received shippingPrice: {data.get('shippingPrice', 0)}")
 
-    # (2) Create shipping address
+
+    # (4) Create shipping address
     if 'shippingAddress' in data:
         shipping = ShippingAddress.objects.create(
             order=order,
@@ -41,12 +49,16 @@ def addOrderItems(request):
     else:
         return Response({'detail': 'Missing shipping address'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # (3) Create order items and update stock
+    # (5) Create order items and update stock
     for item in orderItems:
         try:
             product = Product.objects.get(_id=item['product'])
         except Product.DoesNotExist:
             return Response({'detail': f"Product with ID {item['product']} does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Check stock before creating order item
+        if product.countInStock < item['qty']:
+            return Response({'detail': f"Not enough stock for {product.name}"}, status=status.HTTP_400_BAD_REQUEST)
 
         order_item = OrderItem.objects.create(
             product=product,
@@ -57,17 +69,18 @@ def addOrderItems(request):
             image=product.image.url,
         )
 
-        # (4) Update stock
+        # (6) Update stock
         product.countInStock -= order_item.qty
         product.save()
 
-    # (5) Serialize order and return response
+    # (7) Serialize order and return response
     serializer = OrderSerializer(order, data=request.data, many=False)  # Pass data to serializer
 
     if serializer.is_valid():
         return Response(serializer.data)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
  
  
 @api_view(['GET'])

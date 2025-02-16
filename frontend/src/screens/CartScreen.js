@@ -15,12 +15,13 @@ function CartScreen() {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart);
-  const { cartItems } = cart;
+  const { cartItems = [] } = cart;
 
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
+    console.log(("Cart items:", cartItems));
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
@@ -64,11 +65,12 @@ function CartScreen() {
                             dispatch(addToCart(item.product, Number(e.target.value)))
                           }
                         >
-                          {[...Array(item.countInStock).keys()].map((x) => (
+                          {[...Array(Math.max(0, item.countInStock || 0)).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
                           ))}
+
                         </Form.Control>
                       </Col>
                       <Col md={1} className="cart-item-remove">

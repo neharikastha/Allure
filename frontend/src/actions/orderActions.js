@@ -31,16 +31,15 @@ import {
 
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 
-
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({
             type: ORDER_CREATE_REQUEST
-        })
+        });
 
         const {
             userLogin: { userInfo },
-        } = getState()
+        } = getState();
 
         const config = {
             headers: {
@@ -48,13 +47,19 @@ export const createOrder = (order) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         };
-        console.log("Sending Order Data:", order); // ✅ Debugging
-        console.log("Using Config:", config); // ✅ Debugging
 
+        // ✅ Ensure shippingPrice is explicitly treated as a number
+        const shippingPrice = Number(order.itemsPrice) > 100 ? 0 : 10; 
+        const updatedOrder = { 
+            ...order, 
+            shippingPrice: Number(shippingPrice).toFixed(2) // Ensures shippingPrice is formatted properly
+        };
+
+        console.log("Sending Order Data:", updatedOrder); // ✅ Debugging
 
         const { data } = await axios.post(
             `/api/orders/add/`,
-            order,
+            updatedOrder,
             config
         );
 
@@ -63,15 +68,13 @@ export const createOrder = (order) => async (dispatch, getState) => {
         dispatch({
             type: ORDER_CREATE_SUCCESS,
             payload: data
-        })
+        });
 
         dispatch({
-            type: CART_CLEAR_ITEMS,
-            // payload: data
-        })
+            type: CART_CLEAR_ITEMS
+        });
 
-        localStorage.removeItem('cartItems')
-
+        localStorage.removeItem('cartItems');
 
     } catch (error) {
         console.error("Order Creation Error:", error.response ? error.response.data : error.message); // ✅ Debugging
@@ -81,9 +84,10 @@ export const createOrder = (order) => async (dispatch, getState) => {
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
-        })
+        });
     }
-}
+};
+
 
 
 export const getOrderDetails = (id) => async (dispatch, getState) => {

@@ -1,11 +1,13 @@
 /* ShippingScreen.css */
 .shipping-screen-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-}
+    background-image: url('../assets/images/shipping.jpg'); /* Replace with your image path */
+    background-size: contain;
+    background-position: center;
+    min-height: 110vh;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  
 
 .shipping-screen-container h1 {
     text-align: center;

@@ -1,14 +1,12 @@
-
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listOrders } from '../actions/orderActions'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
-function OrderListScreen({ history }) {
+function OrderListScreen({ }) {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,7 +26,7 @@ function OrderListScreen({ history }) {
            navigate('/login')
         }
 
-    }, [dispatch, history, userInfo])
+    }, [dispatch, userInfo])
 
 
     return (
@@ -75,11 +73,11 @@ function OrderListScreen({ history }) {
                                         </td>
 
                                         <td>
-                                            <LinkContainer to={`/order/${order._id}`}>
+                                            <Link to={`/order/${order._id}`}>
                                                 <Button variant='light' className='btn-sm'>
                                                     Details
                                                 </Button>
-                                            </LinkContainer>
+                                            </Link>
 
 
                                         </td>
